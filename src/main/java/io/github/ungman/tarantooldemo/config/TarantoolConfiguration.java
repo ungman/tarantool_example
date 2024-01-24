@@ -3,6 +3,7 @@ package io.github.ungman.tarantooldemo.config;
 import io.github.ungman.tarantooldemo.repo.UserRepository;
 import io.tarantool.driver.api.TarantoolClient;
 import io.tarantool.driver.api.TarantoolClientConfig;
+import io.tarantool.driver.api.TarantoolClientFactory;
 import io.tarantool.driver.api.TarantoolClusterAddressProvider;
 import io.tarantool.driver.api.TarantoolResult;
 import io.tarantool.driver.api.TarantoolServerAddress;
@@ -16,7 +17,7 @@ import org.springframework.data.tarantool.config.AbstractTarantoolDataConfigurat
 import org.springframework.data.tarantool.repository.config.EnableTarantoolRepositories;
 
 @Configuration
-@EnableTarantoolRepositories(basePackageClasses ={UserRepository.class})
+@EnableTarantoolRepositories(basePackageClasses = {UserRepository.class})
 public class TarantoolConfiguration extends AbstractTarantoolDataConfiguration {
 
 	@Value("${tarantool.host}")
@@ -44,8 +45,13 @@ public class TarantoolConfiguration extends AbstractTarantoolDataConfiguration {
 	public TarantoolClient<TarantoolTuple, TarantoolResult<TarantoolTuple>> tarantoolClient(
 			TarantoolClientConfig tarantoolClientConfig,
 			TarantoolClusterAddressProvider tarantoolClusterAddressProvider) {
-		return new ProxyTarantoolTupleClient(
-				super.tarantoolClient(tarantoolClientConfig, tarantoolClusterAddressProvider));
+		return TarantoolClientFactory.createClient()
+				.withAddress(host,  port)
+				// For connecting to a Cartridge application, use the value of cluster_cookie parameter in the init.lua file
+				.withCredentials(username, password)
+				// you may also specify more client settings, such as:
+				// timeouts, number of connections, custom MessagePack entities to Java objects mapping, etc.
+				.build();
 	}
 
 
