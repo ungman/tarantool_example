@@ -18,7 +18,7 @@ RUN curl -L https://tarantool.io/installer.sh | VER=$TARANTOOL_VERSION /bin/bash
     yum -y install cmake make gcc gcc-c++ git unzip tarantool tarantool-devel cartridge-cli && \
     yum clean all
 
-COPY ../../cluster /app
+COPY data /app
 
 RUN groupadd -g $TARANTOOL_SERVER_GID $TARANTOOL_SERVER_GROUP && \
     useradd -u $TARANTOOL_SERVER_UID -g $TARANTOOL_SERVER_GID -m -s /bin/bash $TARANTOOL_SERVER_USER \
