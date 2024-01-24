@@ -54,5 +54,4 @@ public class TarantoolConfiguration extends AbstractTarantoolDataConfiguration {
 				.build();
 	}
 
-
 }

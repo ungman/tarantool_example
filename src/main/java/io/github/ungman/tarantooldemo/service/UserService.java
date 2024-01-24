@@ -25,4 +25,12 @@ public class UserService {
 				.collect(Collectors.toSet());
 	}
 
+	public User insert(User user) {
+		return userRepository.save(user);
+	}
+
+	public void delete(User user){
+		userRepository.delete(user);
+	}
+
 }

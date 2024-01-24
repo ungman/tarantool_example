@@ -17,10 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/v1/users")
 @RequiredArgsConstructor
 public class UserController {
-
 	private final UserService userService;
-
-
 	@GetMapping("/{login}")
 	public User get(@PathVariable String login){
 		return userService.get(login);
@@ -33,7 +30,7 @@ public class UserController {
 
 	@PostMapping
 	public User insert(User user){
-		throw new UnsupportedOperationException();
+		return  userService.insert(user);
 	}
 
 	@DeleteMapping

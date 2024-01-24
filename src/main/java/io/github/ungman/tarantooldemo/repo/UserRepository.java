@@ -1,13 +1,14 @@
 package io.github.ungman.tarantooldemo.repo;
 
 import io.github.ungman.tarantooldemo.entity.User;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.tarantool.repository.Query;
 import org.springframework.data.tarantool.repository.TarantoolRepository;
 
 
-public interface UserRepository extends TarantoolRepository<User, String> {
+public interface UserRepository extends TarantoolRepository<User, String>, CrudRepository<User,String> {
 
-	@Query(function = "find_user_by_login")
+	@Query(function = "findUserByLogin")
 	User findUserByLogin(String login);
 
 }
