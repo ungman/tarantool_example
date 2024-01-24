@@ -5,5 +5,5 @@ services:
     container_name: tarantool
     build: .
     ports:
-      - "3303:3301"
+      - "3301:3301"
       - "8081:8081"
