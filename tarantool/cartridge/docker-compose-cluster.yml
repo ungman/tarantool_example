@@ -1,7 +1,7 @@
 version: '2.1'
 services:
 
-  tarantool:
+  tarantool-cartridge:
     container_name: tarantool-cartridge
     build: .
     ports:

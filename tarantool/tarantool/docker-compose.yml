@@ -1,8 +1,8 @@
 version: '3.8'
 services:
 
-  tarantool:
-    container_name: tarantool
+  tarantool-one-node:
+    container_name: tarantool-one-node
     build: .
     environment:
       TARANTOOL_USER_NAME: admin
