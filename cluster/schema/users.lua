@@ -1,6 +1,6 @@
-local user = {}
+local users = {}
 
-function articles.init()
+function  users.init()
     local space = box.schema.space.create("users", { if_not_exists = true })
     space:format({
         { name = "login", type = "string" },
@@ -12,4 +12,4 @@ function articles.init()
                                     if_not_exists = true })
 end
 
-return articles
+return  users
