@@ -3,8 +3,7 @@ services:
 
   tarantool:
     container_name: tarantool
-    build: cluster
-    hostname: tarantool
+    build: .
     environment:
       TARANTOOL_USER_NAME: admin
       TARANTOOL_USER_PASSWORD: secret-cluster-cookie
