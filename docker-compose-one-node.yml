@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+
+  tarantool:
+    container_name: tarantool
+    build: cluster
+    hostname: tarantool
+    environment:
+      TARANTOOL_USER_NAME: admin
+      TARANTOOL_USER_PASSWORD: secret-cluster-cookie
+    ports:
+      - "3301:3301"
